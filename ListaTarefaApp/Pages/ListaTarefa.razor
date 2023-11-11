@@ -1,0 +1,87 @@
+﻿@page "/tarefa"
+
+@inject ILocalStorageService _localstorage;
+
+<h3>Lista de Tarefas</h3>
+
+<label>Informe a Tarefa:</label>
+<input @bind="descricaoTarefa" />
+<button @onclick="Adicionar">Adicionar</button>
+
+@*@foreach (TarefaItem tarefa in tarefas)
+    {
+        <span>@tarefa.Descricao</span>
+        <br>
+    }*@
+
+<table class="table table-striped">
+    <tr>
+        <th>Data Criação</th>
+        <th>Descrição</th>
+        <th>Feito</th>
+        <th>Ação</th>
+    </tr>
+    @foreach (TarefaItem tarefa in tarefas)
+    {
+        <tr>
+            <td>@tarefa.DataCriacao</td>
+            <td>@tarefa.Descricao</td>
+            <td>
+                <input type="checkbox" @onchange="@(() => MarcarDescarcar(tarefa))" checked="@tarefa.FlagFeito" />
+
+            </td>
+            <td>
+                <button @onclick="() => Remover(tarefa.Id)">
+                    <i class="oi oi-trash"></i>
+                </button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@code {
+    string descricaoTarefa;
+    List<TarefaItem> tarefas = new List<TarefaItem>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        tarefas = await _localstorage.GetItemAsync<List<TarefaItem>>("tarefas");
+        if (tarefas == null)
+            tarefas = new List<TarefaItem>();
+    }
+
+    public void Adicionar()
+    {
+        TarefaItem tarefaItem
+            = new TarefaItem()
+            {
+                Id = Guid.NewGuid(),
+                Descricao = descricaoTarefa,
+                FlagFeito = false,
+                DataCriacao = DateTime.Now
+            };
+        tarefas.Add(tarefaItem);
+
+        descricaoTarefa = "";
+
+        _localstorage.SetItemAsync("tarefas", tarefas);
+    }
+
+    public void Remover(Guid id)
+    {
+        TarefaItem tarefaSelecionada =
+            tarefas.First(t => t.Id == id);
+
+        tarefas.Remove(tarefaSelecionada);
+
+        _localstorage.SetItemAsync("tarefas", tarefas);
+    }
+
+    public void MarcarDescarcar(TarefaItem tarefa)
+    {
+       tarefa.FlagFeito = !tarefa.FlagFeito;
+
+        _localstorage.SetItemAsync("tarefas", tarefas);
+    }
+}

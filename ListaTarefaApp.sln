@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33801.447
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListaTarefaApp", "ListaTarefaApp\ListaTarefaApp.csproj", "{1923200B-ADCF-4C00-BFFD-CCCDBA69386F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1923200B-ADCF-4C00-BFFD-CCCDBA69386F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1923200B-ADCF-4C00-BFFD-CCCDBA69386F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1923200B-ADCF-4C00-BFFD-CCCDBA69386F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1923200B-ADCF-4C00-BFFD-CCCDBA69386F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C8442BF1-C0D8-4A23-BE61-663BC9958D76}
+	EndGlobalSection
+EndGlobal
